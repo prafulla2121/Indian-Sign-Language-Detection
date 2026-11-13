@@ -1,3 +1,4 @@
+import os
 import cv2
 import numpy as np
 from inference import get_model
@@ -13,7 +14,7 @@ class SignLanguageDetector:
     def __init__(self):
         # Initialize the model - replace with your actual model ID
         self.model_id = "indian-sign-language-fkx1f/2"  # Update this
-        self.api_key="rf_mSp8g0H7X1WLwGCeeHxtzK2S9w62"
+        self.api_key = os.environ.get("ROBOFLOW_API_KEY")  # never hard-code keys in a public repo
         self.model = None
         self.cap = None
         self.is_detecting = False
@@ -526,4 +527,4 @@ if __name__ == "__main__":
         print("Invalid choice. Starting GUI mode by default...")
         detector = SignLanguageDetector()
         detector.model_id = MODEL_ID
-        detector.run()
+        detector.run()
